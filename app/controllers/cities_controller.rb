@@ -1,5 +1,5 @@
 class CitiesController < ApplicationController
   def index
-    render json: { hello: "world" }
+    render json: City.where(params[:q])
   end
 end
