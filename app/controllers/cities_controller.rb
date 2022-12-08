@@ -1,5 +1,7 @@
 class CitiesController < ApplicationController
   def index
-    render json: City.where(params[:q])
+    client = GeoapifyClient.new(type: "city")
+
+    render json: City.where(params[:q], client:)
   end
 end

@@ -1,15 +1,9 @@
 class City
   class << self
-    def where(search_string)
+    def where(search_string, client: NullClient.new)
       client.autocomplete(search_string).map do |result|
         new(result)
       end
-    end
-
-    private
-
-    def client
-      @client ||= GeoapifyClient.new(type: "city")
     end
   end
 
