@@ -8,7 +8,7 @@ class GeoapifyClient
 
     def results
       JSON.parse(@data.body)["features"].map do |result|
-        OpenStruct.new(result["properties"])
+        OpenStruct.new(result["properties"].slice("name", "country_code", "city", "state"))
       end
     end
   end

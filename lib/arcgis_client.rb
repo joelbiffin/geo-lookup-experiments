@@ -6,7 +6,7 @@ class ArcgisClient
 
     def results
       JSON.parse(@data.body)["suggestions"].map do |result|
-        OpenStruct.new(result["text"])
+        OpenStruct.new(result)
       end
     end
   end

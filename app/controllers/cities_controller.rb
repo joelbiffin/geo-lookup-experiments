@@ -1,7 +1,15 @@
 class CitiesController < ApplicationController
   def index
-    client = LocationIQClient.new(type: "city")
+    render json: City.where(params[:q], client: client_klass.new(type: "city"))
+  end
 
-    render json: City.where(params[:q], client:)
+  private
+
+  def client_klass
+    {
+      location_iq: LocationIQClient,
+      esri: ArcgisClient,
+      geoapify: GeoapifyClient,
+    }.fetch(params[:client].to_sym, LocationIQClient)
   end
 end
